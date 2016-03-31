@@ -1,0 +1,102 @@
+<!doctype html>  
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  
+  <title>David and Goliath Demo App</title>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+ 	<link rel="stylesheet" href="assets/styles/style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
+<script src="assets/jQueryAssets/jquery-1.8.3.min.js" type="text/javascript"></script>
+
+<script>
+var audio, playbtn, mutebtn, seek_bar;
+function initAudioPlayer(){
+	audio = new Audio();
+	audio.src = "assets/audio/sound.mp3";
+	audio.loop = true;
+	audio.play();
+	// Set object references
+	playbtn = document.getElementById("playpausebtn");
+	mutebtn = document.getElementById("mutebtn");
+	// Add Event Handling
+	playbtn.addEventListener("click",playPause);
+	mutebtn.addEventListener("click", mute);
+	// Functions
+	function playPause(){
+		if(audio.paused){
+		    audio.play();
+		   
+	    } else {
+		    audio.pause();
+		    
+	    }
+	}
+	function mute(){
+		if(audio.muted){
+		    audio.muted = false;
+		    
+	    } else {
+		    audio.muted = true;
+		    
+	    }
+	}
+}
+window.addEventListener("load", initAudioPlayer);
+</script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="StreamingMedia.js"></script>
+        <script>
+          function playVideo(videoUrl) {
+              // Play a video with callbacks
+              var options = {
+                successCallback: function() {
+                  console.log("Video was closed without error.");
+                },
+                errorCallback: function(errMsg) {
+                  console.log("Error! " + errMsg);
+                }
+              };
+              window.plugins.streamingMedia.playVideo(videoUrl, options);
+          
+          }
+        </script>
+</head>
+
+<body class="cf">
+
+
+
+<div id="container" class="cf">  
+
+ 
+  <section>
+  <input type="hidden" size="60" value="http://smsmajor.com/video.mp4" id="vidUrl"/>
+    <p><a href="#" onclick="playVideo(document.getElementById('vidUrl').value);"><img src="img/play.gif" width="23%"></a></p>
+    <p><a href="how.html"><img src="img/how.gif" width="50%"></a></p>
+    <p><a href="#"><img id="playpausebtn" src="img/sound.gif" width="50%"></a></p>
+    <p><a href="DnG_play.html"><img src="img/exit.gif"  width="20%"></a></p>
+   
+          <!--<div class="mainsection">&nbsp;</div>-->
+
+
+<button id="mutebtn"></button> 
+
+
+  </section>
+</div> <!--! end of #container -->
+
+  <footer>;
+    
+</footer>
+
+</body>
+</html>
+
